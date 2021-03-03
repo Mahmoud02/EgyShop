@@ -1,0 +1,166 @@
+﻿@model EgyShop.ViewModels.ShowPrdouctViewModel
+
+@{
+    ViewData["Title"] = "Product";
+    Layout = "_TemplateLayout";
+    String ImagesFolder = TempData["ImagesFolder"].ToString();
+    var imageUrl = "https://shopstoarge.blob.core.windows.net/products-images/";
+
+
+}
+@section CssScripts{
+
+    <link href="~/templates/template-v2/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/templates/template-v2/css/style.css" asp-append-version="true" rel="stylesheet" />
+    <style type="text/css">
+        .navbar {
+            background-color:@Model.Store.StoreThemeSetting.NavabarBackgroundColor ;
+        }
+        .navbar li,
+        .navbar li a {
+            color : @Model.Store.StoreThemeSetting.NabarTextColor ;
+         }
+        .navbar-brand {
+            color:@Model.Store.StoreThemeSetting.BrandColor ;
+        }
+
+
+        /*store description*/
+
+        .image-container p {
+            color: @Model.Store.StoreThemeSetting.StoreDescriotionTextColor ;
+        }
+         /*Footer Edit Setting*/
+        .footer {
+            background-color: @Model.Store.StoreThemeSetting.FooterBackgroundColor ;
+        }
+        .footer-icons li a,
+        .footer {
+            color:  @Model.Store.StoreThemeSetting.FooterTextColor;
+        }
+
+            .footer ul li i,
+            .footer-icons li a{
+                color: @Model.Store.StoreThemeSetting.FooterIconColo;
+            }
+
+    </style>
+
+}
+<header>
+    <nav class="navbar  fixed-top navbar-expand-lg navbar-dark  d-flex flex-row-reverse">
+        <a class="navbar-brand" asp-controller="shop" asp-action="index" asp-route-id="@Model.Store.StoreId">@Model.Store.Name</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto  flex-row-reverse">
+
+                @foreach (var item in Model.Store.StoreCategories)
+                {
+                    <li class="nav-item active">
+                        <a class="nav-link" asp-controller="shop" asp-action="Category" asp-route-id=@item.CategoryId>@item.Name </a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </nav>
+    <div class="image-container">
+        <div class="overlay">
+            <div class="container">
+                <p>
+                    @Model.Store.Description;
+                </p>
+            </div>
+        </div>
+
+    </div>
+</header>
+<div class="shadow-lg p-4 mb-5  bg-white rounded">
+    <div class="container p-5" style="text-align: right;">
+        <div class="row flex-row-reverse ">
+            <div class="col-md-8">
+
+                <h2><i class="price fa fa-usd" aria-hidden="true"></i><span class="price"> @Model.Product.Price</span>  @Model.Product.Name   </h2>
+                <h5>@Model.Product.Category.Name  <i class="fa fa-tag" aria-hidden="true"></i></h5>
+
+                <p style="margin-top:10px">
+                   
+                    @Model.Product.Description
+                </p>
+                <h4>معلومات التواصل</h4>
+                <ul class="list-unstyled">
+                    <li> @Model.Store.PhoneNumber <i class="fa fa-mobile fa-2x" aria-hidden="true"></i></li>
+                    <li><a href="@Model.Store.FacebookPageLink" target="_blank">Facebook <i class="fa fa-facebook-official fa-1g" aria-hidden="true"></i></a></li>
+                    <li> @Model.Store.Email <i class="fa fa-envelope-o fa-1g" aria-hidden="true"></i></li>
+                    <li> @Model.Store.Country - @Model.Store.City <i class="fa fa-globe fa-1g" aria-hidden="true"></i></li>
+                    <li> @Model.Store.Region<i class="fa fa-globe fa-1g" aria-hidden="true"></i></li>
+                    <li> @Model.Store.Street<i class="fa fa-globe fa-1g" aria-hidden="true"></i></li>
+
+
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <img class="card-img-top" src="@imageUrl@Model.Product.PhotoLink" alt="Card image cap" style=" height: 300px">
+            </div>
+        </div>
+    </div>
+</div>
+@if (Model.SameProducts.Count > 1)
+{
+    <div class="container shadow-lg p-4 mb-5  mt-5 bg-white rounded">
+        <h3 class="mb-3"> المنتجات المشابهه </h3>
+        <div class="row flex-row-reverse">
+
+            @foreach (var item in Model.SameProducts)
+            {
+                <div class="col-md-3">
+                    <div class="card" id="@item.ProductId">
+                        <img class="card-img-top" src="@imageUrl@item.PhotoLink" alt="Card image cap" style=" height: 300px">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Name</h5>
+                            <h6><i class="fa fa-usd" aria-hidden="true"></i>@item.Price</h6>
+                            <a id="openProductDiv" asp-controller="shop" asp-action="Product" asp-route-id=@item.ProductId class="btn btn-primary">تفاصيل</a>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+}
+
+<footer class="bg-light">
+
+    <ul class="list-unstyled mb-0 text-center p-3">
+
+        <li> @Model.Store.PhoneNumber <i class="fa fa-mobile fa-2x" aria-hidden="true"></i></li>
+        <li><a href="@Model.Store.FacebookPageLink" target="_blank">Facebook <i class="fa fa-facebook-official fa-1g" aria-hidden="true"></i></a></li>
+        <li> @Model.Store.Email <i class="fa fa-envelope-o fa-1g" aria-hidden="true"></i></li>
+        <li> @Model.Store.Country - @Model.Store.City <i class="fa fa-globe fa-1g" aria-hidden="true"></i></li>
+        <li>طرق التواصل مع صاحب المتجر</li>
+    </ul>
+    <ul style="background-color: black; color: white;" class="list-unstyled mb-0 text-center p-2">
+
+        <li>CopyRight@2021 EgyShop</li>
+        <li><a style="color: #009970;" asp-controller="store"  asp-action="create">قم بأنشاء المتجر الخاص بك الأن</a></li>
+    </ul>
+
+</footer>
+@section JsScripts{
+    <script type="text/javascript">
+        $(".card").hover(
+            function () {
+                $(this).addClass('shadow-lg').addClass('bg-white').addClass('rounded');
+
+            },
+            function () {
+                $(this).removeClass('hover');
+                $(this).removeClass('shadow-lg').removeClass('bg-white').removeClass('rounded');
+            }
+        );
+
+
+    </script>
+}

@@ -1,0 +1,286 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+@{
+    ViewData["Title"] = "Home";
+}
+@section CssScripts{
+
+    <link href="~/home-page/css/main.css" asp-append-version="true" rel="stylesheet" />
+}
+<header>
+    <div class="container">
+        <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4  bg-white border-bottom box-shadow">
+            <h5 class="my-0 mr-md-auto logo"><span style="color: #03b5ae">SHO</span>PYE</h5>
+            <nav class="my-2 my-md-0 mr-md-3 ">
+                <a class="p-2 text-dark" href="#free-service">
+                    خدمات مجانية
+                </a>
+                <a class="p-2 text-dark" href="#paid-service">
+                    خدمات مدفوعة
+                </a>
+                <a class="p-2 text-dark" href="#about">
+                    من نحن
+                </a>
+                <a class="p-2 text-dark" href="#form-section">تواصل معنا</a>
+            </nav>
+
+            @if (!SignInManager.IsSignedIn(User))
+            {
+                <a class="btn btn-outline-primary" asp-area="Identity" asp-page="/Account/Login">تسجيل الدخول</a>
+            }
+            else
+            {
+                <a class="btn btn-outline-primary" asp-area="" asp-controller="Store" asp-action="Index" title="store">المتجر الإلكتروني</a>
+            }
+
+            @if (User.IsInRole("Admin"))
+            {
+               <a class="btn btn-outline-primary" style="margin-left:10px;" asp-area="" asp-controller="ShopAdminCBMU" asp-action="Index" title="store">Admin Page</a>
+
+            }
+        </div>
+    </div>
+
+    <div class="image-container">
+        <div class="overlay">
+            <div class="container header-content">
+                <div class="row flex-row-reverse">
+                    <div class="col-md-7">
+                        <p style="margin-bottom: 40px;">
+                            <span>هل ترغب فى عرض منتجاتك بطريقه رائعه؟</span>
+                            <span>
+                                اصنع المتجر الخاص بك الان مجانا
+                            </span>
+                            <span>من خلال المنصه الخاصه بنا</span>
+                        </p>
+                        <p> من خلال هذه المنصة يمكنك إنشاء المتجر الإلكتروني الخاص بك </p>
+                        <p>
+                            يمكنك مشاركة الرابط الخاص بمتجرك مع الأخرين  لرؤية منتجاتك
+                        </p>
+                       
+                    </div>
+                    <div class="col-md-5">
+                        <img src="~/home-page/images/store.png" alt="shopimage" style="width: 100%; height: 80%;"  asp-append-version="true" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</header>
+<div id="store-type" class="offers-type pt-5 pb-5" style="text-align: center;">
+    <div class="container">
+        <h3>
+            هل أنت تقدم هذه الخدمات ؟ سوف نساعدك على عرضها بشكل أفضل لجمهورك
+        </h3>
+        <div class="row flex-row-reverse mt-5">
+            <div class="col-md-3">
+                <img class="rounded-circle" src="~/home-page/images/store-type/HomeMade.png" alt="storeType" asp-append-version="true" />
+                <p>تقومين بصنع أشياء فى منزلك</p>
+            </div>
+
+            <div class="col-md-3">
+                <img class="rounded-circle" src="~/home-page/images/store-type/clothes.png" alt="storeType" asp-append-version="true" />
+                <p>
+                    تقوم بصنع الملابس وتريد عرضها لزبائنك
+                </p>
+            </div>
+
+            <div class="col-md-3">
+                <img class="rounded-circle" src="~/home-page/images/store-type/electronics.png" alt="storeType" asp-append-version="true" />
+                <p> بيع الأجهزة الكهربائية</p>
+            </div>
+            <div class="col-md-3">
+                <img class="rounded-circle" src="~/home-page/images/store-type/mobilia.png" alt="storeType" asp-append-version="true" />
+                <p>تقوم بصنع الأثاث المنزلى</p>
+            </div>
+            <div class="col-md-3">
+                <img class="rounded-circle" src="~/home-page/images/store-type/food.png" alt="storeType" asp-append-version="true" />
+                <p>محل لبيع الطعام</p>
+            </div>
+            <div class="col-md-3">
+                <img class="rounded-circle" src="~/home-page/images/store-type/laptop.png" alt="storeType" asp-append-version="true" />
+                <p>
+                    بيع الأجهزة  الإلكترونية
+                </p>
+            </div>
+            <div class="col-md-3">
+                <img class="rounded-circle" src="~/home-page/images/store-type/book.png" alt="storeType" asp-append-version="true" />
+                <p>بيع الكتب</p>
+            </div>
+            <div class="col-md-3">
+                <img class="rounded-circle" src="~/home-page/images/store-type/more.png" alt="storeType" asp-append-version="true" />
+                <p>
+                    بيع منتجات أخرى
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="free-service" class="background-section">
+    <div class="background-overlay">
+        <div class="container pt-5 pb-5">
+            <p style="font-size: 40px;">
+                الخدمات المجانية
+            </p>
+            <div class="row flex-row-reverse mt-5 ">
+                <div class="col-md-3">
+                    <img src="~/home-page/images/free-service/store.png" alt="freesevice" asp-append-version="true" />
+                    <p>عمل عدد 1 متجر الكترونى فقط</p>
+                </div>
+                <div class="col-md-3">
+                    <img src="~/home-page/images/free-service/Da3.png" alt="freesevice" asp-append-version="true" />
+                    <p>لوحة تحكم</p>
+                </div>
+                <div class="col-md-3">
+                    <img src="~/home-page/images/free-service/design.png" asp-append-version="true" />
+                  
+                    <p>تصميمات محدود</p>
+                </div>
+                <div class="col-md-3">
+                    <img src="~/home-page/images/free-service/s.png" alt="freesevice" asp-append-version="true" />
+                    <p>دعم فنى</p>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<div id="paid-service" class="offers-type pt-5 pb-5" style="text-align: center;">
+    <div class="container">
+        <p style="font-size: 40px;">
+            الخدمات المدفوعة
+        </p>
+        <div class="row flex-row-reverse mt-5">
+            <div class="col-md-3">
+                <img class="rounded-circle" src="~/home-page/images/paid-service/m2.jpg"  alt="paisservice" asp-append-version="true"/>
+                <p>تطبيق للهاتف المحمول</p>
+            </div>
+            <div class="col-md-3">
+                <img class="rounded-circle" src="~/home-page/images/paid-service/t.png" alt="paisservice" asp-append-version="true"/>
+                <p>تصميم خاص</p>
+            </div>
+            <div class="col-md-3">
+                <img class="rounded-circle" src="~/home-page/images/paid-service/das.png" alt="paisservice" asp-append-version="true"/>
+                <p>
+                    لوحة تحكم متقدمة
+                </p>
+            </div>
+            <div class="col-md-3">
+                <img class="rounded-circle" src="~/home-page/images/paid-service/chat3.png" alt="paisservice" asp-append-version="true" />
+                <p>الرسائل</p>
+            </div>
+            <div class="col-md-3">
+                <img class="rounded-circle" src="~/home-page/images/paid-service/o.png" alt="paisservice" asp-append-version="true"/>
+                <p>قسم الطلبات</p>
+            </div>
+            <div class="col-md-3">
+                <img class="rounded-circle" src="~/home-page/images/paid-service/digital.jpg" alt="paisservice" asp-append-version="true"/>
+                <p>
+                    التسويق الإلكتروني
+                </p>
+            </div>
+            <div class="col-md-3">
+                <img class="rounded-circle" src="~/home-page/images/paid-service/comments.png" alt="paisservice" asp-append-version="true"/>
+                <p>التعليقات</p>
+            </div>
+            <div class="col-md-3">
+                <img class="rounded-circle" src="~/home-page/images/paid-service/payments.png" alt="paisservice" asp-append-version="true"/>
+                <p>
+                    تفعيل الدفع الإلكتروني
+
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="about" class="background-section">
+    <div class="background-overlay">
+        <div class="container">
+            <p style="font-size: 40px;">من نحن</p>
+            <p style="font-size: 20px;">
+                نحن منصة تساعد الشركات والأفراد على إنشاء المتجر الإلكتروني الخاص بهم
+            </p>
+            <a asp-area="" asp-controller="Store" asp-action="Index" class="btn  btn-lg " role="button">
+                اضغط هنا لإنشاء  المتجر
+            </a>
+
+        </div>
+
+
+    </div>
+</div>
+<div id="form-section" class="form-section p-5">
+    <div class="container">
+        <div class="row flex-row-reverse">
+            <div class="col-md-6">
+                <img src="~/home-page/images/contact.png" width="100%" height="100%" alt="contactimage" />
+            </div>
+            <div class="col-md-6 shadow-lg bg-white rounded p-5">
+                <form   method="post" asp-action="Contact">
+                    <div class="row flex-row-reverse">
+                        <div class="col">
+                            <input type="text" class="form-control" name="name" placeholder="الأسم">
+                        </div>
+                        <div class="col">
+                            <input type="email" class="form-control" name ="email" placeholder="الأيميل" >
+                        </div>
+                    </div>
+                    <div class="form-group mt-3">
+                        <input  class="form-control"   name="about" placeholder="الموضوع">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control"   name="Text" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn ">إرسال</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="bg-light">
+
+
+
+
+    <ul style="background-color: black; color: white;" class="list-unstyled mb-0 text-center p-2">
+
+        <li>Copyright&copy;2021 Shopey</li>
+        <li style="color:white">
+            <i class="fa fa-envelope" aria-hidden="true"></i> contact@shopey.me
+        </li>
+        <li><a style="color:white" href="https://www.facebook.com/ShopyeApp/" target="_blank"><i class="fa fa-facebook-f"></i> Facebook</a></li>
+
+    </ul>
+
+
+</footer>
+@section JsScripts{
+    <script type="text/javascript">
+        $("#store-type .col-md-3").hover(
+            function () {
+                $(this).addClass('shadow-lg').addClass('bg-white').addClass('rounded');
+
+            },
+            function () {
+                $(this).removeClass('hover');
+                $(this).removeClass('shadow-lg').removeClass('bg-white').removeClass('rounded');
+            }
+        );
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+    </script>
+}

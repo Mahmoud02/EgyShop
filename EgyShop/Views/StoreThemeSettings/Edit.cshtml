@@ -1,0 +1,660 @@
+﻿@model EgyShop.Models.StoreThemeSetting
+
+@{
+    ViewData["Title"] = "Edit Theme";
+    Layout = "_TemplateLayout";
+}
+@section CssScripts{
+
+    <link href="~/templates/template-v2/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/templates/template-v2/css/style.css" asp-append-version="true" rel="stylesheet" />
+    <link href="~/css/bootstrap-toggle.min.css" rel="stylesheet" />
+    <link href="~/css/editthemes.css" asp-append-version="true" rel="stylesheet" />
+    <style type="text/css" asp-append-version="true">
+        .navbar {
+            background-color: @Model.NavabarBackgroundColor;
+        }
+
+       .navbar .nav-link {
+                color: @Model.NabarTextColor;
+        }
+            .navbar .navbar-brand {
+                color: @Model.BrandColor;
+            }
+       
+        /*store description*/
+        .image-container {
+            display: @( Model.StoreDesctiptionToggle ? "block" : "none" );
+        }
+        .image-container p {
+            color: @Model.StoreDescriotionTextColor ;
+        }
+        /*Feature Products*/
+        .featured-prouducts {
+            display: @( Model.FeatureProductsToggle ? "block" : "none" );
+        }
+        /*recommend products*/
+        .recommend-products {
+            display: @( Model.RecoomendProductsToggle ? "block" : "none" );
+        }
+        /* Carsoul */
+        .category-products {
+            display: @( Model.CarsoulToggle ? "block" : "none" );
+        }
+        /*Product Setting*/
+        .ProductImage {
+            display: @( Model.ShowProductImage ? "block" : "none" );
+        }
+        .ProductName {
+            display: @( Model.ShowProductName ? "block" : "none" );
+        }
+       .productCategory {
+            display: @( Model.ShowProductCategory ? "block" : "none" );
+        }
+       .ProductDescription {
+            display: @( Model.ShowProductDescription ? "block" : "none" );
+        }
+        .ProductPrice {
+            display: @( Model.ShowProductPrice ? "block" : "none" );
+        }
+      
+        /*Footer Edit Setting*/
+        .footer {
+            background-color: @Model.FooterBackgroundColor ;
+        }
+        .footer-icons li a,
+        .footer {
+            color: @Model.FooterTextColor;
+        }
+
+        .footer ul li i {
+            color: @Model.FooterIconColo ;
+        }
+        .footer .footer-icons {
+          visibility: @( Model.ToggleFooterIcon ? "visible" : "hidden" );
+        }
+
+    </style>
+
+}
+
+
+<header>
+    <nav class="navbar  navbar-expand-lg  d-flex flex-row-reverse ">
+        <a class="navbar-brand" href="#">كمبيوتر شوب</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto  flex-row-reverse">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">القسم الأول</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">القسم الثانى</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">القسم الثالث</a>
+                </li>
+            </ul>
+        </div>
+      
+    </nav>
+    <div class="image-container">
+        <div class="overlay">
+            <div class="container">
+                <p>
+                    وصف المتجر وصف المتجر وصف المتجر وصف المتجر وصف المتجر وصف المتجر وصف المتجر وصف المتجر
+                    وصف المتجر وصف المتجر وصف المتجر وصف المتجر وصف المتجر وصف المتجر وصف المتجر وصف المتجر
+                    وصف المتجر وصف المتجر وصف المتجر وصف المتجر وصف المتجر وصف المتجر وصف المتجر وصف المتجر
+                    وصف المتجر وصف المتجر وصف المتجر وصف المتجر وصف المتجر وصف المتجر وصف المتجر وصف المتجر
+
+                </p>
+            </div>
+        </div>
+
+    </div>
+</header>
+<div class="featured-prouducts container shadow-lg p-4 mb-5  mt-5 bg-white rounded">
+    <h3 class="mb-3"> المنتجات المميزه </h3>
+    <div class="row flex-row-reverse">
+        <div class="card-container col-md-@Model.NumberOfProductsPerRow">
+            <div class="card">
+                <img class="ProductImage card-img-top" src="~/images/editthemes/Product.jpg" alt="Card image cap" style=" height: 300px" asp-append-version="true">
+                <div class="card-body">
+                    <h3 class="ProductName card-title">اسم المنتج</h3>
+                    <h6 class="productCategory card-title"> القسم</h6>
+                    <p class="ProductDescription">وصف المنتج وصف المنتج وصف المنج وصف المنتج وصف المنتج وصف المنج وصف المنتج</p>
+                    <h6 class="ProductPrice">
+                        <i class="fa fa-usd" aria-hidden="true"></i>40
+                    </h6>
+
+                    <a href="#" class="ProductButton btn btn-primary">تفاصيل</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-container col-md-@Model.NumberOfProductsPerRow">
+            <div class="card">
+                <img class="ProductImage card-img-top" src="~/images/editthemes/Product1.jpg" alt="Card image cap" style=" height: 300px" asp-append-version="true">
+                <div class="card-body">
+                    <h3 class="ProductName card-title">اسم المنتج</h3>
+                    <h6 class="productCategory card-title"> القسم</h6>
+                    <p class="ProductDescription">وصف المنتج وصف المنتج وصف المنج وصف المنتج وصف المنتج وصف المنج وصف المنتج</p>
+                    <h6 class="ProductPrice">
+                        <i class="fa fa-usd" aria-hidden="true"></i>40
+                    </h6>
+
+                    <a  href="#" class="ProductButton btn btn-primary">تفاصيل</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-container col-md-@Model.NumberOfProductsPerRow">
+            <div class="card">
+                <img class="ProductImage card-img-top" src="~/images/editthemes/Product2.jpg" alt="Card image cap" style=" height: 300px" asp-append-version="true">
+                <div class="card-body">
+                    <h3 class="ProductName card-title">اسم المنتج</h3>
+                    <h6 class="productCategory card-title"> القسم</h6>
+                    <p class="ProductDescription">وصف المنتج وصف المنتج وصف المنج وصف المنتج وصف المنتج وصف المنج وصف المنتج</p>
+                    <h6 class="ProductPrice">
+                        <i class="fa fa-usd" aria-hidden="true"></i>40
+                    </h6>
+
+                    <a  href="#" class="ProductButton btn btn-primary">تفاصيل</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-container col-md-@Model.NumberOfProductsPerRow">
+            <div class="card">
+                <img class="ProductImage card-img-top" src="~/images/editthemes/Product3.jpg" alt="Card image cap" style=" height: 300px" asp-append-version="true">
+                <div class="card-body">
+                    <h3 class="ProductName card-title">اسم المنتج</h3>
+                    <h6 class="productCategory card-title"> القسم</h6>
+                    <p class="ProductDescription">وصف المنتج وصف المنتج وصف المنج وصف المنتج وصف المنتج وصف المنج وصف المنتج</p>
+                    <h6 class="ProductPrice">
+                        <i class="fa fa-usd" aria-hidden="true"></i>40
+                    </h6>
+
+                    <a  href="#" class="ProductButton btn btn-primary">تفاصيل</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-container col-md-@Model.NumberOfProductsPerRow">
+            <div class="card">
+                <img class="ProductImage card-img-top" src="~/images/editthemes/Product.jpg" alt="Card image cap" style=" height: 300px" asp-append-version="true">
+                <div class="card-body">
+                    <h3 class="ProductName card-title">اسم المنتج</h3>
+                    <h6 class="productCategory card-title"> القسم</h6>
+                    <p class="ProductDescription">وصف المنتج وصف المنتج وصف المنج وصف المنتج وصف المنتج وصف المنج وصف المنتج</p>
+                    <h6 class="ProductPrice">
+                        <i class="fa fa-usd" aria-hidden="true"></i>40
+                    </h6>
+
+                    <a href="#" class="ProductButton btn btn-primary">تفاصيل</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-container col-md-@Model.NumberOfProductsPerRow">
+            <div class="card">
+                <img class="ProductImage card-img-top" src="~/images/editthemes/Product1.jpg" alt="Card image cap" style=" height: 300px" asp-append-version="true">
+                <div class="card-body">
+                    <h3 class="ProductName card-title">اسم المنتج</h3>
+                    <h6 class="productCategory card-title"> القسم</h6>
+                    <p class="ProductDescription">وصف المنتج وصف المنتج وصف المنج وصف المنتج وصف المنتج وصف المنج وصف المنتج</p>
+                    <h6 class="ProductPrice">
+                        <i class="fa fa-usd" aria-hidden="true"></i>40
+                    </h6>
+
+                    <a  href="#" class="ProductButton btn btn-primary">تفاصيل</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-container col-md-@Model.NumberOfProductsPerRow">
+            <div class="card">
+                <img class="ProductImage card-img-top" src="~/images/editthemes/Product2.jpg" alt="Card image cap" style=" height: 300px" asp-append-version="true">
+                <div class="card-body">
+                    <h3 class="ProductName card-title">اسم المنتج</h3>
+                    <h6 class="productCategory card-title"> القسم</h6>
+                    <p class="ProductDescription">وصف المنتج وصف المنتج وصف المنج وصف المنتج وصف المنتج وصف المنج وصف المنتج</p>
+                    <h6 class="ProductPrice">
+                        <i class="fa fa-usd" aria-hidden="true"></i>40
+                    </h6>
+
+                    <a href="#" class="ProductButton btn btn-primary">تفاصيل</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-container col-md-@Model.NumberOfProductsPerRow">
+            <div class="card">
+                <img class="ProductImage card-img-top" src="~/images/editthemes/Product3.jpg" alt="Card image cap" style=" height: 300px" asp-append-version="true">
+                <div class="card-body">
+                    <h3 class="ProductName card-title">اسم المنتج</h3>
+                    <h6 class="productCategory card-title"> القسم</h6>
+                    <p class="ProductDescription">وصف المنتج وصف المنتج وصف المنج وصف المنتج وصف المنتج وصف المنج وصف المنتج</p>
+                    <h6 class="ProductPrice">
+                        <i class="fa fa-usd" aria-hidden="true"></i>40
+                    </h6>
+
+                    <a href="#" class="ProductButton btn btn-primary">تفاصيل</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="recommend-products container shadow-lg p-4 mb-5  mt-5 bg-white rounded">
+    <h3 class="mb-3"> المنتجات المقترحه  </h3>
+    <div class="row flex-row-reverse">
+        <div class="card-container col-md-@Model.NumberOfProductsPerRow">
+            <div class="card">
+                <img class="ProductImage card-img-top" src="~/images/editthemes/Product.jpg" alt="Card image cap" style=" height: 300px" asp-append-version="true">
+                <div class="card-body">
+                    <h3 class="ProductName card-title">اسم المنتج</h3>
+                    <h6 class="productCategory card-title"> القسم</h6>
+                    <p class="ProductDescription">وصف المنتج وصف المنتج وصف المنج وصف المنتج وصف المنتج وصف المنج وصف المنتج</p>
+                    <h6 class="ProductPrice">
+                        <i class="fa fa-usd" aria-hidden="true"></i>40
+                    </h6>
+
+                    <a  href="#" class="ProductButton btn btn-primary">تفاصيل</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-container col-md-@Model.NumberOfProductsPerRow">
+            <div class="card">
+                <img class="ProductImage card-img-top" src="~/images/editthemes/Product1.jpg" alt="Card image cap" style=" height: 300px" asp-append-version="true">
+                <div class="card-body">
+                    <h3 class="ProductName card-title">اسم المنتج</h3>
+                    <h6 class="productCategory card-title"> القسم</h6>
+                    <p class="ProductDescription">وصف المنتج وصف المنتج وصف المنج وصف المنتج وصف المنتج وصف المنج وصف المنتج</p>
+                    <h6 class="ProductPrice">
+                        <i class="fa fa-usd" aria-hidden="true"></i>40
+                    </h6>
+
+                    <a  href="#" class="ProductButton btn btn-primary">تفاصيل</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-container col-md-@Model.NumberOfProductsPerRow">
+            <div class="card">
+                <img class="ProductImage card-img-top" src="~/images/editthemes/Product2.jpg" alt="Card image cap" style=" height: 300px" asp-append-version="true">
+                <div class="card-body">
+                    <h3 class="ProductName card-title">اسم المنتج</h3>
+                    <h6 class="productCategory card-title"> القسم</h6>
+                    <p class="ProductDescription">وصف المنتج وصف المنتج وصف المنج وصف المنتج وصف المنتج وصف المنج وصف المنتج</p>
+                    <h6 class="ProductPrice">
+                        <i class="fa fa-usd" aria-hidden="true"></i>40
+                    </h6>
+
+                    <a  href="#" class="ProductButton btn btn-primary">تفاصيل</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-container col-md-@Model.NumberOfProductsPerRow">
+            <div class="card">
+                <img class="ProductImage card-img-top" src="~/images/editthemes/Product3.jpg" alt="Card image cap" style=" height: 300px" asp-append-version="true">
+                <div class="card-body">
+                    <h3 class="ProductName card-title">اسم المنتج</h3>
+                    <h6 class="productCategory card-title"> القسم</h6>
+                    <p class="ProductDescription">وصف المنتج وصف المنتج وصف المنج وصف المنتج وصف المنتج وصف المنج وصف المنتج</p>
+                    <h6 class="ProductPrice">
+                        <i class="fa fa-usd" aria-hidden="true"></i>40
+                    </h6>
+
+                    <a href="#" class="ProductButton btn btn-primary">تفاصيل</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container shadow-lg p-5 mb-5 bg-white rounded category-products">
+    <ul class="nav nav-tabs justify-content-center flex-row-reverse" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#home">القسم الأول</a>
+        </li>
+       
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#contact">القسم الثانى</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane fade show active" id="home" role="tabpanel">
+            <div class="row flex-row-reverse">
+                <div class="card-container col-md-@Model.NumberOfProductsPerRow">
+                    <div class="card">
+                        <img class="ProductImage card-img-top" src="~/images/editthemes/Product.jpg" alt="Card image cap" style=" height: 300px" asp-append-version="true">
+                        <div class="card-body">
+                            <h3 class="ProductName card-title">اسم المنتج</h3>
+                            <h6 class="productCategory card-title"> القسم</h6>
+                            <p class="ProductDescription">وصف المنتج وصف المنتج وصف المنج وصف المنتج وصف المنتج وصف المنج وصف المنتج</p>
+                            <h6 class="ProductPrice">
+                                <i class="fa fa-usd" aria-hidden="true"></i>40
+                            </h6>
+
+                            <a  href="#" class="ProductButton btn btn-primary">تفاصيل</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-container col-md-@Model.NumberOfProductsPerRow">
+                    <div class="card">
+                        <img class="ProductImage card-img-top" src="~/images/editthemes/Product1.jpg" alt="Card image cap" style=" height: 300px" asp-append-version="true">
+                        <div class="card-body">
+                            <h3 class="ProductName card-title">اسم المنتج</h3>
+                            <h6 class="productCategory card-title"> القسم</h6>
+                            <p class="ProductDescription">وصف المنتج وصف المنتج وصف المنج وصف المنتج وصف المنتج وصف المنج وصف المنتج</p>
+                            <h6 class="ProductPrice">
+                                <i class="fa fa-usd" aria-hidden="true"></i>40
+                            </h6>
+
+                            <a  href="#" class="ProductButton btn btn-primary">تفاصيل</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-container col-md-@Model.NumberOfProductsPerRow">
+                    <div class="card">
+                        <img class="ProductImage card-img-top" src="~/images/editthemes/Product2.jpg" alt="Card image cap" style=" height: 300px" asp-append-version="true">
+                        <div class="card-body">
+                            <h3 class="ProductName card-title">اسم المنتج</h3>
+                            <h6 class="productCategory card-title"> القسم</h6>
+                            <p class="ProductDescription">وصف المنتج وصف المنتج وصف المنج وصف المنتج وصف المنتج وصف المنج وصف المنتج</p>
+                            <h6 class="ProductPrice">
+                                <i class="fa fa-usd" aria-hidden="true"></i>40
+                            </h6>
+
+                            <a  href="#" class="ProductButton btn btn-primary">تفاصيل</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-container col-md-@Model.NumberOfProductsPerRow">
+                    <div class="card">
+                        <img class="ProductImage card-img-top" src="~/images/editthemes/Product3.jpg" alt="Card image cap" style=" height: 300px" asp-append-version="true">
+                        <div class="card-body">
+                            <h3 class="ProductName card-title">اسم المنتج</h3>
+                            <h6 class="productCategory card-title"> القسم</h6>
+                            <p class="ProductDescription">وصف المنتج وصف المنتج وصف المنج وصف المنتج وصف المنتج وصف المنج وصف المنتج</p>
+                            <h6 class="ProductPrice">
+                                <i class="fa fa-usd" aria-hidden="true"></i>40
+                            </h6>
+
+                            <a href="#" class="ProductButton btn btn-primary">تفاصيل</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="contact" role="tabpanel">
+
+            <div class="row flex-row-reverse">
+                <div class="card-container col-md-@Model.NumberOfProductsPerRow">
+                    <div class="card">
+                        <img class="ProductImage card-img-top" src="~/images/editthemes/Product.jpg" alt="Card image cap" style=" height: 300px" asp-append-version="true">
+                        <div class="card-body">
+                            <h3 class="ProductName card-title">اسم المنتج</h3>
+                            <h6 class="productCategory card-title"> القسم</h6>
+                            <p class="ProductDescription">وصف المنتج وصف المنتج وصف المنج وصف المنتج وصف المنتج وصف المنج وصف المنتج</p>
+                            <h6 class="ProductPrice">
+                                <i class="fa fa-usd" aria-hidden="true"></i>40
+                            </h6>
+
+                            <a href="#" class="ProductButton btn btn-primary">تفاصيل</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-container col-md-@Model.NumberOfProductsPerRow">
+                    <div class="card">
+                        <img class="ProductImage card-img-top" src="~/images/editthemes/Product1.jpg" alt="Card image cap" style=" height: 300px" asp-append-version="true">
+                        <div class="card-body">
+                            <h3 class="ProductName card-title">اسم المنتج</h3>
+                            <h6 class="productCategory card-title"> القسم</h6>
+                            <p class="ProductDescription">وصف المنتج وصف المنتج وصف المنج وصف المنتج وصف المنتج وصف المنج وصف المنتج</p>
+                            <h6 class="ProductPrice">
+                                <i class="fa fa-usd" aria-hidden="true"></i>40
+                            </h6>
+
+                            <a  href="#" class="ProductButton btn btn-primary">تفاصيل</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-container col-md-@Model.NumberOfProductsPerRow">
+                    <div class="card">
+                        <img class="ProductImage card-img-top" src="~/images/editthemes/Product2.jpg" alt="Card image cap" style=" height: 300px" asp-append-version="true">
+                        <div class="card-body">
+                            <h3 class="ProductName card-title">اسم المنتج</h3>
+                            <h6 class="productCategory card-title"> القسم</h6>
+                            <p class="ProductDescription">وصف المنتج وصف المنتج وصف المنج وصف المنتج وصف المنتج وصف المنج وصف المنتج</p>
+                            <h6 class="ProductPrice">
+                                <i class="fa fa-usd" aria-hidden="true"></i>40
+                            </h6>
+
+                            <a  href="#" class="ProductButton btn btn-primary">تفاصيل</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-container col-md-@Model.NumberOfProductsPerRow">
+                    <div class="card">
+                        <img class="ProductImage card-img-top" src="~/images/editthemes/Product3.jpg" alt="Card image cap" style=" height: 300px" asp-append-version="true">
+                        <div class="card-body">
+                            <h3 class="ProductName card-title">اسم المنتج</h3>
+                            <h6 class="productCategory card-title"> القسم</h6>
+                            <p class="ProductDescription">وصف المنتج وصف المنتج وصف المنج وصف المنتج وصف المنتج وصف المنج وصف المنتج</p>
+                            <h6 class="ProductPrice">
+                                <i class="fa fa-usd" aria-hidden="true"></i>40
+                            </h6>
+
+                            <a href="#" class="ProductButton btn btn-primary">تفاصيل</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="right-button">
+    <button class="btn" style="color: white;"> الأعدادت <i class="fa fa-cogs" aria-hidden="true"></i></button>
+</div>
+<div id="mySidenav" class="sidenav" style="color: white; ">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a asp-controller="store" asp-action="index">العودة إلى لوحة التحكم</a>
+    <form asp-action="Edit" style="text-align:center">
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="StoreId" value="@Model.StoreId" />
+        <div class="row">
+            <div class="col-md-12 text-center ">
+                <h6> الجزء العلوى من الصفحه</h6>
+                <div class="row no-gutters">
+                    <div class="col-md-8 edit-content">
+                        <input asp-for="BrandColor" type="color" id="navbarBrandTextColor"  />
+                    </div>
+                    <div class="col-md-4 edit-content">
+                        لون الشعار
+                    </div>
+
+                    <div class="col-md-8 edit-content">
+                        <input asp-for="NavabarBackgroundColor" type="color" id="favcolor"  />
+                    </div>
+                    <div class="col-md-4 edit-content">
+                        لون الخلفيه
+                    </div>
+
+                    <div class="col-md-8 edit-content">
+                        <input asp-for="NabarTextColor" type="color" id="navTextcolor" />
+                    </div>
+                    <div class="col-md-4 edit-content">
+                        لون النص 
+                    </div>                
+                </div>
+            </div>
+            <div class="col-md-12 text-center">
+                <h6>إعدادات وصف المتجر</h6>
+                <div class="row no-gutters">
+                    <div class="col-md-8 edit-content">
+                        <input asp-for="StoreDescriotionTextColor" type="color" id="storeDescriptionColor" >
+                    </div>
+                    <div class="col-md-4 edit-content">
+                        لون النص
+                    </div>
+
+                    <div class="col-md-6 edit-content">
+                        <input asp-for="StoreDesctiptionToggle" type="checkbox" id="StoreDescriptionSection"  data-toggle="toggle" data-on="أخفاء"
+                               data-off="أظهار" data-onstyle="success" data-offstyle="danger">
+                    </div>
+                    <div class="col-md-6 edit-content">
+                        وصف المتجر
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 text-center">
+                <h6>المنتجات المميزه</h6>
+                <div class="row no-gutters">
+                    <div class="col-md-12" style="border-bottom: none;">
+                        <input asp-for="FeatureProductsToggle" type="checkbox" id="featureProducts" style="margin-left: 0px;"  data-toggle="toggle"
+                               data-on="أخفاء" data-off="أظهار" data-onstyle="success" data-offstyle="danger">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 text-center">
+                <h6>المنتجات المقترحه</h6>
+                <div class="row no-gutters">
+                    <div class="col-md-12" style="border-bottom: none;">
+                        <input asp-for="RecoomendProductsToggle" type="checkbox" id="recommendProducts" style="margin-left: 0px;"  data-toggle="toggle"
+                               data-on="أخفاء" data-off="أظهار" data-onstyle="success" data-offstyle="danger">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 text-center">
+                <h6>التصنيفات</h6>
+                <div class="row no-gutters">
+                    <div class="col-md-12" style="border-bottom: none;">
+                        <input asp-for="CarsoulToggle" type="checkbox" id="StoreCategoriesProducts" style="margin-left: 0px;"  data-toggle="toggle"
+                               data-on="أخفاء" data-off="أظهار" data-onstyle="success" data-offstyle="danger">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12" style="text-align: center;">
+                <h6> عدد العناصر فى الصف الواحد </h6>
+                <div class="row no-gutters number-of-rows">
+                    <input id="numOfRows" asp-for="NumberOfProductsPerRow" type="hidden" />
+                    <div class="col-md-3">
+                        <button type="button" value="2" class=" featureRowBtn btn btn-warning">6</button>
+
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" value="3" class=" featureRowBtn btn btn-warning">4</button>
+
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" value="4" class="featureRowBtn btn btn-warning">3</button>
+
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" class="featureRowBtn btn btn-warning" value="6">2</button>
+
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" value="12" class=" featureRowBtn btn btn-warning">1</button>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 text-center">
+                <h6> إعدادات المنتج</h6>
+                <div class="row no-gutters">
+                    <div class="col-md-8">
+                        <input asp-for="ShowProductImage" style="width:80%" type="checkbox" id="ProductImageEdit"  data-toggle="toggle"
+                               data-on="أخفاء" data-off="أظهار" data-onstyle="success" data-offstyle="danger">
+                    </div>
+                    <div class="col-md-4">
+                        الصوره
+                    </div>
+
+                    <div class="col-md-8">
+                        <input asp-for="ShowProductName" type="checkbox" id="ProductNameEdit"  data-toggle="toggle" data-on="أخفاء"
+                               data-off="أظهار" data-onstyle="success" data-offstyle="danger">
+                    </div>
+                    <div class="col-md-4">
+                        الأسم
+                    </div>
+                    <div class="col-md-8">
+                        <input asp-for="ShowProductCategory" type="checkbox" id="ProductCategoryEdit"  data-toggle="toggle" data-on="أخفاء"
+                               data-off="أظهار" data-onstyle="success" data-offstyle="danger">
+                    </div>
+                    <div class="col-md-4">
+                        القسم
+                    </div>
+                    <div class="col-md-8">
+                        <input asp-for="ShowProductPrice" type="checkbox" id="ProductPriceEdit"  data-toggle="toggle" data-on="أخفاء" data-off="أظهار"
+                               data-onstyle="success" data-offstyle="danger">
+                    </div>
+                    <div class="col-md-4">
+                        السعر
+                    </div>
+
+                    <div class="col-md-8">
+                        <input asp-for="ShowProductDescription" type="checkbox" id="ProductDescriptioneEdit"  data-toggle="toggle" data-on="أخفاء"
+                               data-off="أظهار" data-onstyle="success" data-offstyle="danger">
+                    </div>
+                    <div class="col-md-4">
+                        الوصف
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="col-md-12 text-center ">
+                <h6> الجزء الأسفل من الصفحه</h6>
+                <div class="row no-gutters">
+                    <div class="col-md-8 edit-content">
+                        <input asp-for="FooterBackgroundColor" type="color" id="footerBackground" />
+                    </div>
+                    <div class="col-md-4 edit-content">
+                        لون الخلفيه
+                    </div>
+                    <div class="col-md-8 edit-content">
+                        <input asp-for="FooterTextColor" type="color" id="footerTextcolor"  />
+                    </div>
+                    <div class="col-md-4 edit-content">
+                        لون النص
+                    </div>
+
+                    <div class="col-md-8 edit-content">
+                        <input asp-for="FooterIconColo" type="color" id="footerIconcolor" />
+                    </div>
+                    <div class="col-md-4 edit-content">
+                        لون الأيقون
+                    </div>
+                    <div class="col-md-8 edit-content">
+                        <input asp-for="ToggleFooterIcon"  type="checkbox" id="showContactInfoFooter"  data-toggle="toggle" data-on="أخفاء" data-off="أظهار" data-onstyle="success" data-offstyle="danger">
+                    </div>
+                    <div class="col-md-4 edit-content">
+                        وسائل الأتصال
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input type="submit" value="حفظ التعديلات" class="btn btn-primary" style="width: 50%;margin: 10px;" />
+    </form>
+</div>
+
+<footer class="footer">
+
+    <ul class="list-unstyled mb-0 text-center p-3 footer-icons">
+
+        <li> 099099099099 <i class="fa fa-mobile fa-2x" aria-hidden="true"></i></li>
+        <li><a href="">Facebook <i class="fa fa-facebook-official fa-1g" aria-hidden="true"></i></a></li>
+        <li> exampl@gmail.com <i class="fa fa-envelope-o fa-1g" aria-hidden="true"></i></li>
+        <li> البلد - المحافظة <i class="fa fa-globe fa-1g" aria-hidden="true"></i></li>
+        <li>طرق التواصل مع صاحب المتجر</li>
+    </ul>
+    <ul style="background-color: black; color: white;" class="list-unstyled mb-0 text-center p-2">
+
+        <li>Copyright&copy;2021 EgyShop</li>
+        <li><a style="color: #009970;" asp-controller="store" asp-action="create">قم بأنشاء المتجر الخاص بك الأن</a></li>
+    </ul>
+
+</footer>
+@section JsScripts{
+    <script src="~/js/bootstrap-toggle.min.js"></script>
+    <script type="text/javascript"> var x =  @Model.NumberOfProductsPerRow; </script>
+    <script src="~/js/edittheme.js" asp-append-version="true"></script>
+}

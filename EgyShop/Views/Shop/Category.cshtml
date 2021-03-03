@@ -1,0 +1,103 @@
+﻿@model EgyShop.ViewModels.CategoryViewModel
+
+@{
+    ViewData["Title"] = "Home";
+    Layout = "_TemplateLayout";
+    var imageUrl = "https://shopstoarge.blob.core.windows.net/products-images/";
+
+    String ImagesFolder = TempData["ImagesFolder"].ToString();
+
+}
+}
+
+@section CssScripts{
+
+    <link href="~/templates/template-v2/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/templates/template-v2/css/style.css" asp-append-version="true" rel="stylesheet" />
+
+}
+<header>
+    <nav class="navbar  fixed-top navbar-expand-lg navbar-dark  d-flex flex-row-reverse">
+        <a class="navbar-brand" asp-controller="shop" asp-action="index" asp-route-id="@Model.Store.StoreId">@Model.Store.Name</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto  flex-row-reverse">
+
+                @foreach (var item in Model.Categoryies)
+                {
+                    <li class="nav-item active">
+                        <a class="nav-link" asp-action="Category" asp-route-id=@item.CategoryId>@item.Name </a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </nav>
+    <div class="image-container">
+        <div class="overlay">
+            <div class="container">
+                <p>
+                    @Model.Store.Description;
+                </p>
+            </div>
+        </div>
+
+    </div>
+</header>
+<div class="container shadow-lg p-4 mb-5  mt-5 bg-white rounded" style="text-align:center">
+    <h3 class="mb-3"> @Model.Category.Name </h3>
+    <P class="mb-3"> @Model.Category.Description </P>
+    <div class="row flex-row-reverse">
+
+        @foreach (var item in Model.Products)
+        {
+            <div class="col-md-3">
+                <div class="card" id="@item.ProductId">
+                    <img class="card-img-top" src="@imageUrl@item.PhotoLink" alt="Card image cap" style=" height: 300px">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Name</h5>
+                        <h6><i class="fa fa-usd" aria-hidden="true"></i>@item.Price</h6>
+                        <a id="openProductDiv" asp-controller="Shop" asp-action="Product" asp-route-id="@item.ProductId" class="btn btn-primary">تفاصيل</a>
+                    </div>
+                </div>
+            </div>
+
+        }
+
+    </div>
+</div>
+<footer class="bg-light">
+
+    <ul class="list-unstyled mb-0 text-center p-3">
+
+        <li> @Model.Store.PhoneNumber <i class="fa fa-mobile fa-2x" aria-hidden="true"></i></li>
+        <li><a href="">Facebook <i class="fa fa-facebook-official fa-1g" aria-hidden="true"></i></a></li>
+        <li> @Model.Store.Email <i class="fa fa-envelope-o fa-1g" aria-hidden="true"></i></li>
+        <li> @Model.Store.Country - @Model.Store.City <i class="fa fa-globe fa-1g" aria-hidden="true"></i></li>
+        <li>طرق التواصل مع صاحب المتجر</li>
+    </ul>
+    <ul style="background-color: black; color: white;" class="list-unstyled mb-0 text-center p-2">
+
+        <li>CopyRight@2021 EgyShop</li>
+        <li><a style="color: #009970;" href="">قم بأنشاء المتجر الخاص بك الأن</a></li>
+    </ul>
+
+</footer>
+@section JsScripts{
+    <script type="text/javascript">
+        $(".card").hover(
+            function () {
+                $(this).addClass('shadow-lg').addClass('bg-white').addClass('rounded');
+
+            },
+            function () {
+                $(this).removeClass('hover');
+                $(this).removeClass('shadow-lg').removeClass('bg-white').removeClass('rounded');
+            }
+        );
+      
+
+    </script>
+}

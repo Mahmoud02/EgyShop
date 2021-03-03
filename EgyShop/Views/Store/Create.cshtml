@@ -1,0 +1,115 @@
+﻿@model EgyShop.Models.Store
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "_TemplateLayout";
+}
+@section CssScripts{
+    <link href="~/css/create-store.css" rel="stylesheet" />
+}
+<section class="mt-5 mb-5">
+    <div class="container">
+        <div class="row flex-row-reverse no-gutters">
+            <div class="col-md-6 px-5 py-5  form-container shadow-lg bg-white rounded">
+                <h2>قم بأنشاء المتجر الالكترونى الخاص بك</h2>
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-row my-3">
+                        <div class="col-md-10">
+                            <label asp-for="Name"> </label>
+                            <input asp-for="Name" class="form-control " type="text" />
+                            <small class="form-text text-muted">
+                                تأكد من اختيار أسم مناسب
+                            </small>
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-row my-3">
+                        <div class="col-md-10">
+                            <label asp-for="Description"> </label>
+                            <textarea asp-for="Description" class="form-control " type="text"rows="5"></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-row my-3">
+                        <div class="col-md-10">
+                            <label asp-for="StoreType.Type"></label>
+                            <select asp-for="StoreTypeId" asp-items="ViewBag.StoreTypeId" class="form-control"> </select>
+                        </div>
+                    </div>
+                    <div class="form-row my-3">
+                        <div class="col-md-10">
+                            <label asp-for="Email"></label>
+                            <input asp-for="Email" class="form-control p-3" type="text" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-row my-3">
+                        <div class="col-md-10">
+                            <label asp-for="PhoneNumber"></label>
+                            <input asp-for="PhoneNumber" class="form-control p-3" type="text" />
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+
+                        </div>
+                    </div>
+                    <div class="form-row my-3">
+                        <div class="col-md-10">
+                            <label asp-for="FacebookPageLink"></label>
+                            <input asp-for="FacebookPageLink" class="form-control p-3" type="text" />
+                            <span asp-validation-for="FacebookPageLink" class="text-danger"></span>
+
+                        </div>
+                    </div>
+
+                    <div class="form-row my-3">
+                        <div class="col-md-10">
+                            <label asp-for="Country"></label>
+                            <input asp-for="Country" class="form-control p-3" type="text" />
+                            <span asp-validation-for="Country" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-row  my-3">
+                        <div class="form-group col-md-6">
+                            <label asp-for="City"></label>
+                            <input asp-for="City" type="text" class="form-control">
+                            <span asp-validation-for="City" class="text-danger"></span>
+
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label asp-for="Region"></label>
+                            <input asp-for="Region" type="text" class="form-control">
+                            <span asp-validation-for="Region" class="text-danger"></span>
+
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label asp-for="Street"></label>
+                            <input asp-for="Street" type="text" class="form-control">
+                            <span asp-validation-for="Street" class="text-danger"></span>
+
+                        </div>
+                      
+                    </div>
+                    <div class="form-row">
+                        <div class="col-lg-12">
+                            <button type="submit">تأكيد</button>
+                        </div>
+                    </div>
+
+                    <a asp-controller="home" asp-action="index">العوده للصفحه الرئيسيه</a>
+                </form>
+
+            </div>
+            <div class="col-md-6 " style="text-align: center;">
+                <h1>EgyShop</h1>
+                <p>  اعرض منجاتك اونلاين عن طريق المنصه الخاصه بنا وتمتع بالعديد من المزايا والعروض</p>
+                <img src="~/images/10.jpg" style="width: 90%;"alt="img" asp-append-version="true"/>
+                <img src="~/images/s.jpg" style="width: 90%;" alt="img" asp-append-version="true"/>
+            </div>
+        </div>
+    </div>
+</section>
+@section JsScripts{
+    <partial name="_ValidationScriptsPartial" />
+}

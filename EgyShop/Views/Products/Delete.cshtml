@@ -1,0 +1,58 @@
+﻿@model EgyShop.Models.Product
+
+@{
+    ViewData["Title"] = "Delete";
+    String ImaageFolder = TempData["ImagesFolder"].ToString();
+    var imageUrl ="https://shopstoarge.blob.core.windows.net/products-images/";
+}
+
+
+<div class="col-md-12">
+    <h3 class="description">حذف المنتج</h3>
+
+    <h5 style="color:darkred">هل انت متأكد من هذه العمليه سوف بتم حذف هذا المنتج نهائياً؟</h5>
+</div>
+
+<div class="col-md-8">
+  
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+           
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PhotoLink)
+        </dt>
+        <dd class="col-sm-10">
+            <img src="@imageUrl@Model.PhotoLink"
+                 height="100" width="100"
+                 asp-append-version="true" />
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Category.Name)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ProductId" />
+        <input type="submit" value="حذف نهائياً" class="btn btn-danger" /> 
+    </form>
+</div>

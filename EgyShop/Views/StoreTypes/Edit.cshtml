@@ -1,0 +1,32 @@
+﻿@model EgyShop.Models.StoreType
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "_TemplateLayout";
+}
+
+<div class="container" style="text-align:center; margin-top:30px">
+    <h3>Edit Store Type </h3>
+
+    <div class="row">
+        <div class="col-md-8">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="StoreTypeId" />
+                <div class="form-group">
+                    <label asp-for="Type" class="control-label"></label>
+                    <input asp-for="Type" class="form-control" />
+                    <span asp-validation-for="Type" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+        <div class="col-md-4">
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </div>
+
+
+</div>

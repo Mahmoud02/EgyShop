@@ -1,0 +1,226 @@
+ /* global Css*/
+
+ @import url(https://fonts.googleapis.com/earlyaccess/amiri.css);
+ /* font-family: 'Amiri', serif; */
+
+ @import url(https://fonts.googleapis.com/earlyaccess/scheherazade.css);
+ /*font-family: 'Scheherazade', serif;*/
+
+ @import url(https://fonts.googleapis.com/earlyaccess/lateef.css);
+ /*global css*/
+
+ body {
+     position: relative;
+     font-family: 'Amiri', serif;
+ }
+.offers-type p,
+#free-service p,
+#paid-service  p{
+    font-size: 1.75rem;
+}
+
+/*header*/
+header .logo {
+    font-weight: bolder;
+    font-size: 30px;
+}
+
+ header .btn {
+     background-color: #03b5ae;
+     color: white;
+     border-color: #03b5ae;
+ }
+
+ header .btn:hover {
+     background-color: white;
+     color: black;
+     border-color: black;
+ }
+
+.image-container {
+    text-align: right;
+    color: black;
+    background: url("../images/background.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-height: 500px;
+}
+
+ .image-container a {
+     background-color: white;
+     color: black;
+     width: 50%;
+     transition: transform .5s ease;
+     border: 0px;
+ }
+
+ .image-container a:hover {
+     transform: scale(1.1);
+ }
+
+ .overlay {
+     background: rgba(2, 2, 2, 0.3);
+     color: white;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     min-height: 500px;
+ }
+
+ .overlay p {
+     font-size: 20px;
+ }
+
+ .header-content {
+     padding-top: 20px;
+ }
+
+ .header-content p {
+     text-align: right;
+ }
+
+ .header-content span {
+     display: block;
+     font-size: 30px;
+     font-weight: bold;
+     margin-bottom: 2px;
+     letter-spacing: 0em;
+ }
+
+ /*offer section*/
+
+ .offers-type .col-md-3 {
+     padding-top: 20px;
+ }
+
+ .offers-type img {
+     border: 1px solid;
+     height: 150px;
+     width: 150px;
+     margin-bottom: 20px;
+     transition: transform .5s ease;
+ }
+
+ .offers-type img:hover {
+     transform: scale(1.2);
+ }
+
+ /*section with image background and overlay*/
+
+.background-section {
+    color: black;
+    background: url("../images/background.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-height: 300px;
+}
+
+ .background-overlay {
+     background: rgba(2, 2, 2, 0.3);
+     color: white;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     text-align: center;
+     min-height: 300px;
+ }
+
+ .background-section img {
+     border: 1px solid;
+     height: 150px;
+     width: 150px;
+     margin-bottom: 20px;
+     transition: transform .5s ease;
+ }
+
+ .background-section img:hover {
+     transform: scale(1.2);
+ }
+
+ .background-section a {
+     background-color: white;
+     color: black;
+     width: 200px;
+     transition: transform .5s ease;
+ }
+
+ .background-section a:hover {
+     transform: scale(1.1);
+ }
+
+ /*Pricing Section*/
+
+ .pricing .card-body {
+     position: relative;
+ }
+
+ .pricing .btn {
+     position: absolute;
+     bottom: 0;
+     left: 0;
+     right: 0;
+     width: 80%;
+     margin-left: auto;
+     margin-right: auto;
+     margin-bottom: 10px;
+     background-color: #03b5ae;
+     color: white;
+     transition: transform .5s ease;
+     border-color: #03b5ae;
+ }
+
+ .pricing .btn:hover {
+     transform: scale(1.1);
+     color: black;
+     background-color: white;
+     border-color: black;
+ }
+
+ /*Custom Section Edit*/
+
+ .pricing .card {
+     height: 450px;
+ }
+
+ #paid-service img, #free-service img {
+     border: 0px;
+ }
+
+ /*Form section*/
+
+ .form-section, .form-section input {
+     text-align: right;
+ }
+
+ .form-section .btn {
+     width: 100px;
+     height: 50px;
+     background-color: black;
+     border-color: black;
+     color: white;
+     transition: transform .5s ease;
+ }
+
+ .form-section .btn:hover {
+     transform: scale(1.1);
+ }
+
+ /*footer*/
+
+ footer ul li {
+     display: inline-block;
+     margin-right: 10px;
+     margin-left: 10px;
+ }
+
+ footer a {
+     color: black;
+ }
+
+ footer i {
+     color: #009970;
+ }

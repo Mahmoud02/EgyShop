@@ -1,0 +1,91 @@
+﻿@model IEnumerable<EgyShop.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+    String ImageFolder = TempData["ImagesFolder"].ToString();
+    int count = 1;
+    var imageUrl = " https://shopstoarge.blob.core.windows.net/products-images/";
+
+}
+
+<div class="col-md-12">
+    <h3 class="description">المنتجات</h3>
+
+    <p>
+        <a asp-action="Create">إنشاء منتج جديد</a>
+    </p>
+
+</div>
+
+<table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+          
+            <th>
+                @Html.DisplayNameFor(model => model.PhotoLink)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FeatureProduct)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RecommendProduct)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td scope="row">
+               @count
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+         
+            <td>
+                <img src="@imageUrl@item.PhotoLink"
+                     height="100" width="100"
+                     asp-append-version="true" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FeatureProduct)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RecommendProduct)
+            </td>
+            <td>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        الأعدادت
+                    </button>
+                    <div class="dropdown-menu">
+                       <a class="dropdown-item" asp-action="Edit" asp-route-id="@item.ProductId">تعديل</a>
+                        <a class="dropdown-item" asp-action="Delete" asp-route-id="@item.ProductId">حذف</a>
+                    </div>
+                </div>
+
+            </td>
+        </tr>
+            count++;
+        }
+    </tbody>
+</table>

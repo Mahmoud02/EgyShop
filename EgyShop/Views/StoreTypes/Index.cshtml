@@ -1,0 +1,40 @@
+﻿@model IEnumerable<EgyShop.Models.StoreType>
+
+@{
+    ViewData["Title"] = "Store Types";
+    Layout = "_TemplateLayout";
+}
+
+<div class="container" style="text-align: center; margin-top: 30px">
+    <h3>Store Types</h3>
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Type)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.StoreTypeId">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.StoreTypeId">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.StoreTypeId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+

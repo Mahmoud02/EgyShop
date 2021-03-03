@@ -1,0 +1,282 @@
+﻿@model EgyShop.ViewModels.ShopViewModel
+
+@{
+    ViewData["Title"] = "Home";
+    Layout = "_TemplateLayout";
+    int counter = 0;
+    int counter2 = 0;
+    String ImagesFolder = TempData["ImagesFolder"].ToString();
+    var imageUrl = "https://shopstoarge.blob.core.windows.net/products-images/";
+}
+}
+
+@section CssScripts{
+
+    <link href="~/templates/template-v2/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/templates/template-v2/css/style.css" asp-append-version="true" rel="stylesheet" />
+    <style type="text/css" asp-append-version="true" >
+        .navbar {
+            background-color:@Model.store.StoreThemeSetting.NavabarBackgroundColor !important;
+        }
+            .navbar li,
+            .navbar li a {
+                color: @Model.store.StoreThemeSetting.NabarTextColor !important;
+            }
+        .navbar-brand {
+            color: @Model.store.StoreThemeSetting.BrandColor !important;
+        }
+        
+
+        /*store description*/
+
+        .image-container p {
+            color: @Model.store.StoreThemeSetting.StoreDescriotionTextColor ;
+        }
+         /*Footer Edit Setting*/
+        .footer {
+            background-color: @Model.store.StoreThemeSetting.FooterBackgroundColor ;
+        }
+        .footer-icons li a,
+        .footer {
+            color:  @Model.store.StoreThemeSetting.FooterTextColor;
+        }
+
+            .footer ul li i,
+            .footer-icons li a{
+                color: @Model.store.StoreThemeSetting.FooterIconColo;
+            }
+
+    </style>
+}
+<header>
+    <nav class="navbar  fixed-top navbar-expand-lg navbar-dark  d-flex flex-row-reverse">
+        <a class="navbar-brand"asp-controller="shop" asp-action="index" asp-route-id="@Model.store.StoreId">@Model.store.Name</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto  flex-row-reverse">
+
+                @foreach (var item in Model.store.StoreCategories)
+                {
+                    <li class="nav-item active">
+                        <a class="nav-link" asp-action="Category" asp-route-id=@item.CategoryId>@item.Name </a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </nav>
+    @if (@Model.store.StoreThemeSetting.StoreDesctiptionToggle)
+    {
+        <div class="image-container">
+            <div class="overlay">
+                <div class="container">
+                    <p>
+                        @Model.store.Description;
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    }
+
+</header>
+@if (@Model.store.StoreThemeSetting.FeatureProductsToggle)
+{
+    <div class="featured-prouducts container shadow-lg p-4 mb-5  mt-5 bg-white rounded">
+        <h3 class="mb-3"> المنتجات المميزه </h3>
+        <div class="row flex-row-reverse">
+
+            @foreach (var item in Model.getFeatureProducts())
+            {
+                <div class="col-md-@Model.store.StoreThemeSetting.NumberOfProductsPerRow ">
+                    <div class="card" id="@item.ProductId">
+                        @if (Model.store.StoreThemeSetting.ShowProductImage)
+                        {
+                            <img class="card-img-top" src="@imageUrl@item.PhotoLink" alt="Card image cap" style=" height: 250px">
+
+                        }
+                    <div class="card-body">
+                        @if (Model.store.StoreThemeSetting.ShowProductName)
+                        {
+                            <h5 class="card-title">@item.Name</h5>
+                        }
+                        @if (Model.store.StoreThemeSetting.ShowProductCategory)
+                        {
+                            <h6 class="card-title">@item.Category.Name</h6>
+                        }
+                        @if (Model.store.StoreThemeSetting.ShowProductDescription)
+                        {
+                            <p class="card-title">@item.Description</p>
+                        }
+                        @if (Model.store.StoreThemeSetting.ShowProductPrice)
+                        {
+                            <h6><i class="fa fa-usd" aria-hidden="true"></i><span class="price">@item.Price</span></h6>
+                        }
+                        <a id="openProductDiv" asp-controller="Shop" asp-action="Product" asp-route-id="@item.ProductId" class="btn btn-primary">تفاصيل</a>
+                    </div>
+                    </div>
+                </div>
+
+            }
+
+        </div>
+    </div>
+}
+
+
+@if (Model.store.StoreThemeSetting.RecoomendProductsToggle)
+{
+    <div class="recommend-products container shadow-lg p-4 mb-5  bg-white rounded">
+        <h3 class="mb-3"> المنتجات المقترحه </h3>
+        <div class="row flex-row-reverse">
+
+            @foreach (var item in Model.getRecommendProducts())
+            {
+                <div class="col-md-@Model.store.StoreThemeSetting.NumberOfProductsPerRow">
+                    <div class="card" id="@item.ProductId">
+                        @if (Model.store.StoreThemeSetting.ShowProductImage)
+                        {
+                            <img class="card-img-top" src="~/store-images/@ImagesFolder/@item.PhotoLink" alt="Card image cap" style=" height: 250px">
+
+                        }
+                        <div class="card-body">
+                            @if (Model.store.StoreThemeSetting.ShowProductName)
+                            {
+                                <h5 class="card-title">@item.Name</h5>
+                            }
+                            @if (Model.store.StoreThemeSetting.ShowProductCategory)
+                            {
+                                <h6 class="card-title">@item.Category.Name</h6>
+                            }
+                            @if (Model.store.StoreThemeSetting.ShowProductDescription)
+                            {
+                                <p class="card-title">@item.Description</p>
+                            }
+                            @if (Model.store.StoreThemeSetting.ShowProductPrice)
+                            {
+                                <h6><i class="fa fa-usd" aria-hidden="true"></i><span class="price">@item.Price</span></h6>
+                            }
+                            <a id="openProductDiv" asp-controller="Shop" asp-action="Product" asp-route-id="@item.ProductId" class="btn btn-primary">تفاصيل</a>
+                        </div>
+                    </div>
+                </div>
+
+            }
+
+        </div>
+    </div>
+}
+
+@if (Model.store.StoreThemeSetting.CarsoulToggle)
+{
+    <div class="category-products container shadow-lg p-5 mb-5 bg-white rounded">
+        <ul class="nav nav-tabs justify-content-center flex-row-reverse" id="myTab" role="tablist">
+            @foreach (var item in Model.store.StoreCategories)
+            {
+
+                <li class="nav-item">
+                    <a class="nav-link  @(counter2 == 0 ? "active" : "") " id="@item.CategoryId-tab" data-toggle="tab" href="#@item.Name" role="tab" aria-controls="@item.CategoryId"
+                       aria-selected="true">@item.Name</a>
+                </li>
+                counter2++;
+            }
+
+        </ul>
+        <div class="tab-content" id="myTabContent">
+
+            @foreach (var item in Model.store.StoreCategories)
+            {
+
+
+                <div class="tab-pane fade @(counter == 0 ? "show active" : "")" id="@item.Name" role="tabpanel" aria-labelledby="@item.CategoryId-tab">
+
+                    <div class="row flex-row-reverse">
+                        @foreach (var product in Model.getCategoryProducts(item.CategoryId))
+                        {
+                            <div class="col-md-@Model.store.StoreThemeSetting.NumberOfProductsPerRow">
+                                <div class="card" id="@product.ProductId">
+                                    @if (Model.store.StoreThemeSetting.ShowProductImage)
+                                    {
+                                        <img class="card-img-top" src="@imageUrl@product.PhotoLink" alt="Card image cap" style=" height: 250px">
+
+                                    }
+                                    <div class="card-body">
+                                        @if (Model.store.StoreThemeSetting.ShowProductName)
+                                        {
+                                            <h5 class="card-title">@product.Name</h5>
+                                        }
+                                        @if (Model.store.StoreThemeSetting.ShowProductCategory)
+                                        {
+                                            <h6 class="card-title">@product.Category.Name</h6>
+                                        }
+                                        @if (Model.store.StoreThemeSetting.ShowProductDescription)
+                                        {
+                                            <p class="card-title">@product.Description</p>
+                                        }
+                                        @if (Model.store.StoreThemeSetting.ShowProductPrice)
+                                        {
+                                            <h6><i class="fa fa-usd" aria-hidden="true"></i><span class="price">@product.Price</span></h6>
+                                        }
+                                        <a id="openProductDiv" asp-controller="Shop" asp-action="Product" asp-route-id="@product.ProductId" class="btn btn-primary">تفاصيل</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                </div>
+                counter++;
+            }
+
+
+
+        </div>
+    </div>
+
+}
+
+
+<footer class="footer">
+    @if (Model.store.StoreThemeSetting.ToggleFooterIcon)
+    {
+        <ul class="list-unstyled mb-0 text-center p-3 footer-icons">
+
+            <li> @Model.store.PhoneNumber <i class="fa fa-mobile fa-2x" aria-hidden="true"></i></li>
+            <li><a href="@Model.store.FacebookPageLink" target="_blank">Facebook <i class="fa fa-facebook-official fa-1g" aria-hidden="true"></i></a></li>
+            <li> @Model.store.Email <i class="fa fa-envelope-o fa-1g" aria-hidden="true"></i></li>
+            <li> @Model.store.Country - @Model.store.City <i class="fa fa-globe fa-1g" aria-hidden="true"></i></li>
+            <li>طرق التواصل مع صاحب المتجر</li>
+        </ul>
+    }
+    <ul style="background-color: black; color: white;" class="list-unstyled mb-0 text-center p-2">
+
+        <li>CopyRight@2021 EgyShop</li>
+        <li><a style="color: #009970;" asp-controller="store"  asp-action="create">قم بأنشاء المتجر الخاص بك الأن</a></li>
+    </ul>
+
+</footer>
+@section JsScripts{
+    <script type="text/javascript">
+        $(".card").hover(
+            function () {
+                $(this).addClass('shadow-lg').addClass('bg-white').addClass('rounded');
+
+            },
+            function () {
+                $(this).removeClass('hover');
+                $(this).removeClass('shadow-lg').removeClass('bg-white').removeClass('rounded');
+            }
+        );
+        $("#closeProductDiv").click(function () {
+            $(".box").hide();
+        })
+        $("#openProductDiv").click(function () {
+            $(".box").show();
+
+        })
+        $(".box").hide();
+
+    </script>
+}

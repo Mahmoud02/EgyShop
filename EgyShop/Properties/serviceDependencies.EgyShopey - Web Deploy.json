@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "mssql2": {
+      "type": "mssql.onprem",
+      "connectionId": "ApplicationDbContextConnection",
+      "secretStore": "AzureAppSettings"
+    },
+    "storage1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Storage/storageAccounts/shopstoarge",
+      "type": "storage.azure",
+      "connectionId": "azuerSoargeconnection",
+      "secretStore": "AzureAppSettings"
+    }
+  }
+}
